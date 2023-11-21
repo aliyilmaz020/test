@@ -24,14 +24,14 @@ module test::messenger {
       from,
       to,
     };
-    transfer::transfer(messenger, tx_context::sender(ctx));
+    transfer::transfer(messenger, to);
   }
 
   fun init(ctx: &mut TxContext) {
     transfer::transfer(Admin {id: object::new(ctx)}, tx_context::sender(ctx));
   }
   #[test_only]
-  fun init_for_testing(ctx: &mut TxContext) {
+  public fun init_for_testing(ctx: &mut TxContext) {
     init(ctx);
   }
 }
